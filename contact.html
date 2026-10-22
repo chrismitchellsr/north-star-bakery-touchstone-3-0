@@ -8,9 +8,8 @@
   <style>
     .field-error { display:block; min-height:1.25rem; margin:.25rem 0 .5rem; color:#a32121; font-size:.9rem; font-weight:700; }
     input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="true"] { border:2px solid #a32121; background:#fff8f8; }
-    .form-status { margin-top:1rem; font-weight:700; color:#265c36; }
+    .form-status { margin-top:1rem; font-weight:700; }
   </style>
-  <script src="contact-validation.js" defer></script>
 </head>
 <body class="bakery-site">
 <header class="site-header">
@@ -36,13 +35,13 @@
       <fieldset>
         <legend>Your Contact Information</legend>
         <label for="name">Full name: *</label>
-        <input id="name" name="name" type="text" required minlength="2" aria-describedby="name-error" autocomplete="name" required>
+        <input id="name" name="name" type="text" required minlength="2" autocomplete="name" aria-describedby="name-error">
         <span id="name-error" class="field-error" aria-live="polite"></span>
         <label for="email">Email address: *</label>
-        <input id="email" name="email" type="email" required aria-describedby="email-error" autocomplete="email" required>
+        <input id="email" name="email" type="email" required autocomplete="email" aria-describedby="email-error">
         <span id="email-error" class="field-error" aria-live="polite"></span>
         <label for="phone">Phone number:</label>
-        <input id="phone" name="phone" type="tel" placeholder="555-555-5555" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" aria-describedby="phone-error" autocomplete="tel">
+        <input id="phone" name="phone" type="tel" placeholder="555-555-5555" autocomplete="tel" aria-describedby="phone-error">
         <span id="phone-error" class="field-error" aria-live="polite"></span>
       </fieldset>
       <fieldset>
@@ -71,5 +70,44 @@
   </section>
 </main>
 <footer class="site-footer"><p>© 2026 North Star Bakery. Handmade for our community.</p></footer>
+<script>
+'use strict';
+(() => {
+  const form = document.getElementById('bakery-contact-form');
+  const fields = [...form.querySelectorAll('input, select, textarea')];
+  const status = document.getElementById('form-status');
+  function errorFor(field) {
+    const value = field.value.trim();
+    if (field.required && !value) return 'This field is required.';
+    if (field.id === 'name' && value.length < 2) return 'Please enter a name with at least 2 characters.';
+    if (field.type === 'email' && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Enter a valid email address.';
+    if (field.id === 'phone' && value && !/^\+?[\d\s().-]{7,20}$/.test(value)) return 'Enter a valid phone number.';
+    if (field.id === 'quantity' && value && (!Number.isInteger(Number(value)) || Number(value) < 1 || Number(value) > 100)) return 'Enter a quantity between 1 and 100.';
+    return '';
+  }
+  function validate(field) {
+    const error = document.getElementById(field.id + '-error');
+    const message = errorFor(field);
+    if (error) error.textContent = message;
+    field.setAttribute('aria-invalid', String(Boolean(message)));
+    return !message;
+  }
+  fields.forEach(field => {
+    field.addEventListener('input', () => { validate(field); status.textContent = ''; });
+    field.addEventListener('change', () => { validate(field); status.textContent = ''; });
+  });
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const results = fields.map(validate); // Evaluate ALL fields so multiple errors appear together.
+    if (results.some(valid => !valid)) {
+      status.textContent = 'Please correct the highlighted fields before submitting.';
+      status.style.color = '#a32121';
+      return;
+    }
+    status.textContent = 'Your information is valid. This demonstration form does not send an order; please contact the bakery to confirm.';
+    status.style.color = '#265c36';
+  });
+})();
+</script>
 </body>
 </html>
