@@ -1,64 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>North Star Bakery | Contact and Pre-Orders</title>
-<link href="styles.css" rel="stylesheet"/></head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>North Star Bakery | Contact and Pre-Orders</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .field-error { display:block; min-height:1.25rem; margin:.25rem 0 .5rem; color:#a32121; font-size:.9rem; font-weight:700; }
+    input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="true"] { border:2px solid #a32121; background:#fff8f8; }
+    .form-status { margin-top:1rem; font-weight:700; color:#265c36; }
+  </style>
+  <script src="touchstone4.js" defer></script>
+</head>
 <body class="bakery-site">
 <header class="site-header">
-<img alt="North Star Bakery logo" class="site-logo" loading="lazy" src="bakery-logo.png"/>
-<h1>Contact and Pre-Order Requests</h1>
-<nav aria-label="Main navigation">
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="products.html">Products</a></li>
-<li><a href="about.html">About</a></li>
-<li><a aria-current="page" href="contact.html">Contact and Pre-Orders</a></li>
-</ul>
-</nav>
+  <img src="bakery-logo.png" alt="North Star Bakery logo" class="site-logo">
+  <h1>Contact and Pre-Order Requests</h1>
+  <nav aria-label="Main navigation"><ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" aria-current="page">Contact and Pre-Orders</a></li>
+  </ul></nav>
 </header>
 <main class="site-main">
-<section class="content-card">
-<h2>Visit or Contact Us</h2>
-<p>North Star Bakery serves our local neighborhood. Contact us for directions, product availability, and pickup details.</p>
-<p>Hours: Monday-Saturday, 7:00 a.m.-6:00 p.m.; Sunday, 8:00 a.m.-2:00 p.m.</p>
-</section>
-<section class="content-card">
-<h2>Inquiry and Pre-Order Form</h2>
-<form action="#" method="post">
-<fieldset>
-<legend>Your Contact Information</legend>
-<label for="name">Full name:</label>
-<input id="name" name="name" required="" type="text"/>
-<label for="email">Email address:</label>
-<input id="email" name="email" required="" type="email"/>
-<label for="phone">Phone number:</label>
-<input id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="555-555-5555" type="tel"/>
-</fieldset>
-<fieldset>
-<legend>Order or Inquiry Details</legend>
-<label for="request-type">Request type:</label>
-<select id="request-type" name="request-type" required="">
-<option value="">Choose one</option>
-<option value="general">General inquiry</option>
-<option value="bread">Bread pre-order</option>
-<option value="pastry">Pastry pre-order</option>
-<option value="cake">Cake or event order</option>
-</select>
-<label for="pickup-date">Requested pickup date:</label>
-<input id="pickup-date" name="pickup-date" type="date"/>
-<label for="quantity">Estimated quantity:</label>
-<input id="quantity" max="100" min="1" name="quantity" type="number"/>
-<label for="details">Tell us what you need:</label>
-<textarea id="details" name="details" required="" rows="6"></textarea>
-</fieldset>
-<button type="submit">Send Request</button>
-</form>
-</section>
+  <section class="content-card">
+    <h2>Visit or Contact Us</h2>
+    <p>North Star Bakery serves our local neighborhood. Contact us for directions, product availability, and pickup details.</p>
+    <p>Hours: Monday-Saturday, 7:00 a.m.-6:00 p.m.; Sunday, 8:00 a.m.-2:00 p.m.</p>
+  </section>
+  <section class="content-card">
+    <h2>Inquiry and Pre-Order Form</h2>
+    <p>Complete the form below. Required fields are marked with an asterisk (*).</p>
+    <form id="bakery-contact-form" novalidate>
+      <fieldset>
+        <legend>Your Contact Information</legend>
+        <label for="name">Full name: *</label>
+        <input id="name" name="name" type="text" required minlength="2" aria-describedby="name-error" autocomplete="name">
+        <span id="name-error" class="field-error" aria-live="polite"></span>
+        <label for="email">Email address: *</label>
+        <input id="email" name="email" type="email" required aria-describedby="email-error" autocomplete="email">
+        <span id="email-error" class="field-error" aria-live="polite"></span>
+        <label for="phone">Phone number:</label>
+        <input id="phone" name="phone" type="tel" placeholder="555-555-5555" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" aria-describedby="phone-error" autocomplete="tel">
+        <span id="phone-error" class="field-error" aria-live="polite"></span>
+      </fieldset>
+      <fieldset>
+        <legend>Order or Inquiry Details</legend>
+        <label for="request-type">Request type: *</label>
+        <select id="request-type" name="request-type" required aria-describedby="request-type-error">
+          <option value="">Choose one</option>
+          <option value="general">General inquiry</option>
+          <option value="bread">Bread pre-order</option>
+          <option value="pastry">Pastry pre-order</option>
+          <option value="cake">Cake or event order</option>
+        </select>
+        <span id="request-type-error" class="field-error" aria-live="polite"></span>
+        <label for="pickup-date">Requested pickup date:</label>
+        <input id="pickup-date" name="pickup-date" type="date">
+        <label for="quantity">Estimated quantity:</label>
+        <input id="quantity" name="quantity" type="number" min="1" max="100" aria-describedby="quantity-error">
+        <span id="quantity-error" class="field-error" aria-live="polite"></span>
+        <label for="details">Tell us what you need: *</label>
+        <textarea id="details" name="details" rows="6" required aria-describedby="details-error"></textarea>
+        <span id="details-error" class="field-error" aria-live="polite"></span>
+      </fieldset>
+      <button type="submit">Send Request</button>
+      <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
 </main>
-<footer class="site-footer">
-<p>© 2026 North Star Bakery. Handmade for our community.</p>
-</footer>
+<footer class="site-footer"><p>© 2026 North Star Bakery. Handmade for our community.</p></footer>
 </body>
 </html>
