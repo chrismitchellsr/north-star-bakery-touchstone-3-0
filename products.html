@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Explore fresh breads, pastries, and cakes at North Star Bakery and save your favorites.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore North Star Bakery breads, pastries, cakes and save your favorites.">
   <title>North Star Bakery | Products</title>
+  <!-- Match the Home page's exact shared stylesheet and layout. -->
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="touchstone4.css">
 </head>
 <body class="bakery-site">
   <header class="site-header">
-    <img class="site-logo" src="bakery-logo.png" alt="North Star Bakery logo" width="120">
-    <h1>Bakery Products</h1>
+    <img src="bakery-logo.png" alt="North Star Bakery logo" class="site-logo" width="120">
+    <h1>Welcome to North Star Bakery</h1>
     <nav aria-label="Main navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -23,6 +24,12 @@
   </header>
 
   <main class="site-main">
+    <section class="content-card" aria-labelledby="products-intro">
+      <h2 id="products-intro">Freshly Baked for Our Neighborhood</h2>
+      <p>Explore our handmade breads, buttery pastries, and celebration cakes. Every item is prepared with care for our neighborhood.</p>
+      <img src="bakery-bread.jpg" alt="Freshly baked artisan bread at North Star Bakery" loading="lazy">
+    </section>
+
     <section class="content-card" aria-labelledby="breads-heading">
       <h2 id="breads-heading">Breads</h2>
       <p>Choose from crusty artisan loaves, sandwich breads, and rotating seasonal breads ($5–$12).</p>
@@ -41,9 +48,18 @@
       <p>Ask our team about cake options for birthdays and special occasions.</p>
     </section>
 
-    <section class="content-card" aria-labelledby="favorites-heading" style="flex-basis:100%;">
+    <section class="content-card" aria-labelledby="featured-heading">
+      <h2 id="featured-heading">Featured Item of the Week</h2>
+      <picture>
+        <source media="(min-width: 800px)" srcset="bakery-feature-large.jpg">
+        <img src="bakery-feature-small.jpg" alt="North Star Bakery featured baked item of the week" loading="lazy">
+      </picture>
+      <p>Ask our team about this week's seasonal feature while supplies last.</p>
+    </section>
+
+    <section class="content-card" aria-labelledby="favorites-heading" style="flex-basis:100%">
       <h2 id="favorites-heading">Save Your Bakery Favorites</h2>
-      <p>Select your favorite bakery items below to create a list before contacting us about a pre-order.</p>
+      <p>Select items to create a list before contacting us about a pre-order.</p>
       <div id="bakery-favorites">
         <div id="favorite-options" class="favorite-options" aria-label="Bakery items to save"></div>
         <h3>My Favorites</h3>
