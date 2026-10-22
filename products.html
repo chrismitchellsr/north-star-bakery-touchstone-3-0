@@ -1,68 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>North Star Bakery | Products</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="touchstone4.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore fresh breads, pastries, and cakes at North Star Bakery and save your favorites.">
+  <title>North Star Bakery | Products</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="touchstone4.css">
 </head>
-<body>
-    <header>
-        <div class="logo-container">
-            <h1>Bakery Products</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html" class="active">Products</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact and Pre-Orders</a></li>
-            </ul>
-        </nav>
-    </header>
+<body class="bakery-site">
+  <header class="site-header">
+    <img class="site-logo" src="bakery-logo.png" alt="North Star Bakery logo" width="120">
+    <h1>Bakery Products</h1>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html" aria-current="page">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact and Pre-Orders</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <section class="favorites-container">
-            <h2>Save Your Bakery Favorites</h2>
-            <p>Select items below to build your custom consideration list before pre-ordering.</p>
-            <div class="favorites-box">
-                <h3>My Favorites</h3>
-                <ul id="my-favorites">
-                    <li class="empty-message">No favorites saved yet. Click "Add to Favorites" below!</li>
-                </ul>
-            </div>
-        </section>
+  <main class="site-main">
+    <section class="content-card" aria-labelledby="breads-heading">
+      <h2 id="breads-heading">Breads</h2>
+      <p>Choose from crusty artisan loaves, sandwich breads, and rotating seasonal breads ($5–$12).</p>
+      <h3>Signature Loaf</h3>
+      <p>Handmade house favorite baked for a crisp crust and tender center.</p>
+      <h3>Artisan Sourdough</h3>
+      <p>Classic naturally leavened bread with a wild yeast starter.</p>
+    </section>
 
-        <section class="product-category">
-            <h2>Breads</h2>
-            <p>Choose from crusty artisan loaves, sandwich breads, and rotating seasonal breads ($5-$12).</p>
-            <div class="product-card">
-                <h3>Signature Loaf</h3>
-                <p>Handmade house favorite baked for a crisp crust and tender center.</p>
-                <button class="favorite-btn" data-item="Signature Loaf">Add to Favorites</button>
-            </div>
-            <div class="product-card">
-                <h3>Artisan Sourdough</h3>
-                <p>Classic naturally leavened bread with a wild yeast starter.</p>
-                <button class="favorite-btn" data-item="Artisan Sourdough">Add to Favorites</button>
-            </div>
-        </section>
+    <section class="content-card" aria-labelledby="pastries-heading">
+      <h2 id="pastries-heading">Pastries &amp; Cakes</h2>
+      <p>Explore our fresh morning pastries and celebration cakes ($3–$95).</p>
+      <h3>Butter Croissant</h3>
+      <p>Flaky, golden-brown layers of pure buttery goodness.</p>
+      <h3>Custom Celebration Cakes</h3>
+      <p>Ask our team about cake options for birthdays and special occasions.</p>
+    </section>
 
-        <section class="product-category">
-            <h2>Pastries & Cakes</h2>
-            <p>Explore our fresh morning pastries and celebration cakes ($3-$95).</p>
-            <div class="product-card">
-                <h3>Butter Croissant</h3>
-                <p>Flaky, golden-brown layers of pure buttery goodness.</p>
-                <button class="favorite-btn" data-item="Butter Croissant">Add to Favorites</button>
-            </div>
-        </section>
-    </main>
+    <section class="content-card" aria-labelledby="favorites-heading" style="flex-basis:100%;">
+      <h2 id="favorites-heading">Save Your Bakery Favorites</h2>
+      <p>Select your favorite bakery items below to create a list before contacting us about a pre-order.</p>
+      <div id="bakery-favorites">
+        <div id="favorite-options" class="favorite-options" aria-label="Bakery items to save"></div>
+        <h3>My Favorites</h3>
+        <ul id="favorite-list" aria-live="polite">
+          <li>You have not selected any favorites yet.</li>
+        </ul>
+        <p id="favorites-status" role="status" aria-live="polite"></p>
+      </div>
+      <p><a href="contact.html">Contact us about a pre-order</a></p>
+    </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2026 North Star Bakery.</p>
-    </footer>
-    <script src="touchstone4.js"></script>
+  <footer class="site-footer">
+    <p>&copy; 2026 North Star Bakery. Handmade for our community.</p>
+  </footer>
+  <script src="touchstone4.js" defer></script>
 </body>
 </html>
